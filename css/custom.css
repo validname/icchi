@@ -1,0 +1,15 @@
+body {
+  /* for static navigation bar */
+  height: 2000px;
+  padding-top: 70px;
+}
+
+.inline-icchi {
+  display: inline;
+}
+
+.center-block-icchi {
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+}
