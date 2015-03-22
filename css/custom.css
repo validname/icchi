@@ -1,14 +1,14 @@
 body {
   /* for static navigation bar */
-  height: 2000px;
+  height: 1000px;
   padding-top: 70px;
 }
 
-.inline-icchi {
+.inline-custom {
   display: inline;
 }
 
-.center-block-icchi {
+.center-block-custom {
   margin-left: auto;
   margin-right: auto;
   display: table;

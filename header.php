@@ -1,3 +1,12 @@
+<?php
+
+if (!isset($html_title)) {
+	$html_title = "";
+}
+if (!isset($navbar_menu_title)) {
+	$navbar_menu_title = NAVBAR_MENU_DEFAULT;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="favicon.ico">
 
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title><?php echo $html_title; ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,13 +30,13 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Icchi</a>
+          <a class="navbar-brand" href="main.php"><?php echo PROJECT_NAME; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Add entry</a></li>
-            <li><a href="#about">View entries</a></li>
-            <li><a href="#contact">Tags</a></li>
+            <li<?php if ($navbar_menu_title == NAVBAR_MENU_ADD_ENTRY) { echo " class=\"active\"";} ?>><a href="edit_entry.php">Add entry</a></li>
+            <li<?php if ($navbar_menu_title == NAVBAR_MENU_LIST_ENTRIES) { echo " class=\"active\"";} ?>><a href="list_entries.php">Entries</a></li>
+            <li<?php if ($navbar_menu_title == NAVBAR_MENU_TAGS) { echo " class=\"active\"";} ?>><a href="list_tags.php">Tags</a></li>
           </ul>
           <form class="navbar-form navbar-left" role="form">
             <div class="form-group">
@@ -36,26 +45,10 @@
             <button type="submit" class="btn btn-success">Search</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#contact">Options</a></li>
-            <li><a href="../navbar/">Exit</a></li>
+            <li<?php if ($navbar_menu_title == NAVBAR_MENU_OPTIONS) { echo " class=\"active\"";} ?>><a href="options.php">Options</a></li>
+            <li><a href="logout.php">Exit</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
-
-    <div class="container">
-
-      <div class="jumbotron">
-        <p>Just a text</p>
-      </div>
-
-    </div> <!-- /container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-</html>
+    <!-- / Fixed navbar -->
