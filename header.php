@@ -30,7 +30,7 @@ if (!isset($navbar_menu_title)) {
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="main.php"><?php echo PROJECT_NAME; ?></a>
+          <a class="navbar-brand" href="index.php"><?php echo PROJECT_NAME; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
