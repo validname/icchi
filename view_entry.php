@@ -15,7 +15,7 @@ if ($id_entry===false) {
 	show_error("Empty id of entry");
 } else {
 	// get data from db
-	$db_result = db_query("SELECT * FROM entries WHERE id_entry=".$id_entry);
+	$db_result = db_query("SELECT *, DATE_FORMAT(date, \"".SQL_DATETIME_FORMAT."\") as datetime FROM entries WHERE id_entry=".$id_entry);
 	if ($db_result===false) {
 		show_error(db_get_last_error());
 		$id_entry = false;
@@ -25,7 +25,7 @@ if ($id_entry===false) {
 		$id_entry = false;
 	} else {
 		$tmp_array = db_fetch_assoc_array($db_result);
-		$date = $tmp_array['date'];
+		$date = $tmp_array['datetime'];
 		$title = db_strip_slashes($tmp_array['title']);
 		$text = db_strip_slashes($tmp_array['text']);
 
@@ -52,7 +52,7 @@ if ($id_entry!==false) {
 				<div style="display: table-cell; padding: 3px;">
 					<span class="label label-default"><?php echo $date; ?></span>
 				</div>
-				<div style="display: table-cell; padding: 3px; width: 100%;"><?php echo $title; ?></div>
+				<div style="display: table-cell; padding: 3px; width: 100%;"><strong><?php echo $title; ?></strong></div>
 				<div style="display: table-cell; padding: 3px; white-space: nowrap;">
 					<button type="button" class="btn btn-default btn-xs" aria-label="Edit entry">
 						<a href="edit_entry.php?id=<?php echo $id_entry; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>

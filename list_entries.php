@@ -9,7 +9,7 @@ $navbar_menu_title = NAVBAR_MENU_LIST_ENTRIES;
 include("header.php");
 
 // build search query
-$db_query = "SELECT id_entry, date, title, SUBSTRING(text, 1, 512) as text, LENGTH(text) as length FROM entries";
+$db_query = "SELECT id_entry, DATE_FORMAT(date, \"".SQL_DATE_FORMAT."\") as date_string, DATE_FORMAT(date, \"".SQL_DATETIME_FORMAT."\") as datetime_string, title, SUBSTRING(text, 1, 512) as text, LENGTH(text) as length FROM entries ORDER by date";
 
 $db_result = db_query($db_query);
 if ($db_result===false) {
@@ -22,9 +22,8 @@ if (db_num_rows($db_result)) {
 	while ($entry = db_fetch_assoc_array($db_result)) {
 		$id_entry = $entry['id_entry'];
 
-		$date = $entry['date'];
-		$datetime = $date;
-		$date = strtok($date, " ");
+		$date = $entry['date_string'];
+		$datetime = $entry['datetime_string'];
 
 		$title = db_strip_slashes($entry['title']);
 
@@ -48,7 +47,7 @@ if (db_num_rows($db_result)) {
 					<span class="label label-default" title="<?php echo $datetime; ?>"</span><?php echo $date; ?></span>
 				</div>
 				<div style="display: table-cell; padding: 3px; width: 100%;">
-					<a href="view_entry.php?id=<?php echo $id_entry; ?>"><?php echo $title ?></a>
+					<a href="view_entry.php?id=<?php echo $id_entry; ?>"><strong><?php echo $title ?></strong></a>
 				</div>
 				<div style="display: table-cell; padding: 3px; white-space: nowrap;">
 					<button type="button" class="btn btn-default btn-xs" aria-label="Edit entry">
